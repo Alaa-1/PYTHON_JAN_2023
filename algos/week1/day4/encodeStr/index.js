@@ -38,11 +38,11 @@ var expected4 = "bbcc";
  */
 
 function strEncode(str = "") {
-  let encoded = "";
+  var encoded = "";
 
-  for (let i = 0; i < str.length; i++) {
-    let currChar = str[i];
-    let dupeCount = 1;
+  for (var i = 0; i < str.length; i++) {
+    var currChar = str[i];
+    var dupeCount = 1;
 
     while (str[i + 1] === currChar) {
       dupeCount++;
@@ -58,10 +58,10 @@ function strEncode(str = "") {
  * @returns {string}
  */
 function strEncodeHashTable(str = "") {
-  const charFreq = {};
-  let encoded = "";
+  var charFreq = {};
+  var encoded = "";
 
-  for (const char of str) {
+  for (var char of str) {
     if (charFreq[char]) {
       charFreq[char]++;
     } else {
@@ -71,7 +71,7 @@ function strEncodeHashTable(str = "") {
 
   // iterate back over str to get the proper order
   // order of keys on obj is not guaranteed to be in order
-  for (const char of str) {
+  for (var char of str) {
     if (charFreq[char] > 0) {
       encoded += char + charFreq[char];
       // Next time the same letter is looked up, it won't be added again.
