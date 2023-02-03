@@ -52,6 +52,8 @@ target/
 profile_default/
 ipython_config.py
 
+#pipenv
+Pipfile.lock
 # pyenv
 .python-version
 # Environment
