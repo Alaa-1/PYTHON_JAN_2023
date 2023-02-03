@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+<!-- linking a css style sheet -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+<!-- linking a javascript file -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/my_script.js') }}" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    {% for one_student in students%}
+    <p>name: {{one_student['name']}} </p>
+    <p>age: {{one_student.age}} </p>
+    {% endfor %}
+    <img src="{{ url_for('static', filename='img/wallpaper.jpg') }} " width="250px">
+
+</body>
+</html>
