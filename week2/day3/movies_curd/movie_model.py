@@ -27,6 +27,34 @@ class Movie:
 
         return movie_list
 
+    # this method saves movies to DB
+    @classmethod
+    def save(cls, data):
+
+        q = """
+        INSERT INTO movies (title, release_date, description, created_at, updated_at ) VALUES (%(title)s, %(release_date)s, %(description)s, NOW() , NOW());
+        """
+        result = connectToMySQL('movies_schema').query_db(q, data)
+        print(f" ******** {result} ********")
+        return result
 
 
+    # this method will fetch one movie by id
 
+    @classmethod
+    def get_one_by_id(cls, data):
+
+        query = "SELECT * FROM movies WHERE id= %(id)s"
+
+        result = connectToMySQL('movies_schema').query_db(query, data)
+
+        if result:
+
+            movie = cls(result[0])
+            return movie
+
+        return []
+    
+
+    #TODO
+    #! Create delete and update_one movie methods
