@@ -1,19 +1,20 @@
-from flask import Flask, render_template, request, redirect # Import Flask to allow us to create our app
+from flask import Flask, render_template, request, redirect 
 from movie_model import Movie
 app = Flask(__name__)    # Create a new instance of the Flask class called "app"
 
+#* ============ Display Route ============
 @app.route('/')          # The "@" decorator associates this route with the function immediately following
 def show_all():
     all_movies = Movie.get_all()
     print(all_movies)
     return render_template("movies.html", all_movies = all_movies)  # Return the string 'Hello World!' as a response
 
-#* Display Route
+# ============ Display Route ============
 @app.route("/movies/new")
 def show_form():
     return render_template("movie_form.html")
 
-#? Action Route
+# ============ Action Route ============
 @app.route("/movies/create", methods=['POST'])
 def process_form():
 
@@ -22,12 +23,14 @@ def process_form():
         "release_date": request.form['release_date'],
         "description": request.form['description']
             }
-
+    
     movie_id = Movie.save(data)
+    # ---- alternative method since the request.form is already a dictionary -----
+    # movie_id = Movie.save(request.form)
 
     return redirect(f"/movies/show/{movie_id}")
 
-#* Display Route
+# ============ Display Route ============
 @app.route("/movies/show/<int:id>")
 def show_one_movie(id):
 
